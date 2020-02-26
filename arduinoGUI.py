@@ -7,6 +7,7 @@ import serial
 import shutil
 import os
 import sys
+import time
 from numpy import array, sqrt, mean, abs, zeros, dot, cumsum, where
 from numpy.fft import fft
 
@@ -16,6 +17,10 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 
 from scipy.signal import iirnotch, butter, lfilter
 
+""" Returns parameters for three filters
+
+Note: iirnotch behaves differently in Python than Matlab
+"""
 def prepareFilter(fs):
     w0 = 60 / (fs / 2)
     b, a = iirnotch(w0, 5)  # 60Hz notch
@@ -34,12 +39,16 @@ def rms(x):
 
     return rms
 
-
 def arv(x):
     arv = mean(abs(x))
 
     return arv
 
+""" Returns mean power frequency of spectrum
+
+Based on intechopen.com's definition
+Should be roughly functionally equivalent to matlab version
+"""
 def meanfreq(x, win_size):
     sz = int(win_size / 2) + 1
     pxx = abs(fft(x)) ** 2
@@ -49,7 +58,11 @@ def meanfreq(x, win_size):
 
     return meanfreq
 
+""" Returns median power frequency of spectrum
 
+Calculates a cumulative sum of the spectrum then locates midpoint
+Further improvement may be needed
+"""
 def medfreq(x, win_size):
     sz = int(win_size / 2) + 1
     pxx = abs(fft(x)) ** 2
@@ -80,10 +93,45 @@ if __name__ == '__main__':
     displayDataNumber = 4000
     fs = 4000
 
-    serialPort = input("Port:")
-
-    shutil.rmtree('./rawdata')
+    # rmtree throws an error if data directory not extant
+    try:
+        shutil.rmtree('./rawdata')
+    except FileNotFoundError:
+        print("Data directory not found.\nCreating new directory...")
     os.mkdir('./rawdata')
+
+    # Checks validity of serial port before taking time to init PyQt
+    while True:
+        try:
+            # Allows for minimal effort by user
+            serialPort = "COM" + input("Port: COM")
+            print("Trying to open serial port:", serialPort)
+            ser = serial.Serial(serialPort, baudRate, timeout=0.5)
+            time.sleep(1)
+            if ser.inWaiting() == 0:
+                raise IOError
+        except IOError:
+            print("Unable to open serial port:", serialPort)
+            # sys.exit()
+            continue
+        else:
+            break
+
+    rawData = ser.readline()
+    print(' √ Get connection!')
+    rawData = 0
+
+    
+    rawDataArray = zeros(displayDataNumber)
+
+    datablockN = 0
+
+    MEF = []
+    MDF = []
+    ARV = []
+    RMS = []
+
+    b, a, d, c, f, e = prepareFilter(fs)
 
     app = pg.mkQApp()
 
@@ -161,23 +209,11 @@ if __name__ == '__main__':
 
     win.show()
 
-    b, a, d, c, f, e = prepareFilter(fs)
+    
 
     print(' √ Window is ready!')
 
-    ser = serial.Serial(serialPort, baudRate, timeout=0.5)
-    rawData = ser.readline()
-    print(' √ Get connection!')
-    rawData = 0
-
-    rawDataArray = zeros(displayDataNumber)
-
-    datablockN = 0
-
-    MEF = []
-    MDF = []
-    ARV = []
-    RMS = []
+    
 
 
     while True:
