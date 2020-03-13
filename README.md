@@ -1,5 +1,5 @@
 # EMG Monitor
-A wearable EMG monitoring project.
+A wearable EMG monitoring sensor project.
 
 Here are the Arduino code and GUI code for the real-time EMG measurement.
 To run the codes:
