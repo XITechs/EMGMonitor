@@ -1,6 +1,7 @@
 # EMG Monitor
 A wearable EMG monitoring sensor project.
 
+## EMG measurement
 Here are the Arduino code and GUI code for the real-time EMG measurement.
 To run the codes:
 1. Unzip the attached file and upload the ''v010219.ino'' to Arduino Nano 33 BLE Sense board.
