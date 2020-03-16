@@ -1,12 +1,14 @@
+#!/usr/bin/env python
 
-from numpy import dot, cumsum, where, array_split, savetxt, fromfile, float64, mean, array,sqrt
-from numpy import abs as npabs
-from numpy import sum as npsum
+# -*- coding: utf-8 -*-
+
+from numpy import dot, cumsum, where, array_split, savetxt, fromfile, float64, mean, array, sqrt, abs, sum
 from numpy.fft import fft
-from os import listdir
+from os import listdir, mkdir
 from os.path import isfile, join
 from scipy.signal import iirnotch, butter, lfilter
-from math import floor
+
+import shutil
 
 def prepareFilter(w0, fs):
     b, a = iirnotch(w0, 10)  # 60Hz notch
@@ -22,7 +24,7 @@ def addFilter(b, a, data):
 
 def meanfreq(x, win_size):
     sz = int(win_size / 2) + 1
-    pxx = npabs(fft(x)) ** 2
+    pxx = abs(fft(x)) ** 2
     ps = pxx[1:sz] * 2e-06
     pwr = sum(ps)
     meanfreq = dot(ps, range(1, sz)) / pwr
@@ -32,7 +34,7 @@ def meanfreq(x, win_size):
 
 def medfreq(x, win_size):
     sz = int(win_size / 2) + 1
-    pxx = npabs(fft(x)) ** 2
+    pxx = abs(fft(x)) ** 2
     ps = pxx[1:sz] * 2e-06
     cs = cumsum(ps)
     pwr = sum(ps)
@@ -43,70 +45,79 @@ def medfreq(x, win_size):
 
 def rms(x):
     x2 = x*x
-    rms = sqrt(npsum(x2)/x.size)
+    rms = sqrt(sum(x2)/x.size)
 
     return rms
 
 
 def arv(x):
-    arv = mean(npabs(x))
+    arv = mean(abs(x))
 
     return arv
 
+if __name__ == '__main__':
+    binPath = 'rawdata/'
+    binNumber = 0
+    try:
+        binNumber = len([name for name in listdir(binPath) if isfile(join(binPath, name))])
+    except FileNotFoundError:
+        print("rawdata directory not found.\n")
 
-binPath = 'rawdata/'
-binNumber = 0
-try:
-    binNumber = len([name for name in listdir(binPath) if isfile(join(binPath, name))])
-except FileNotFoundError:
-    print("rawdata directory not found.\n")
+    print('Find bins: ', binNumber)
 
-print('Find bins: ', binNumber)
+    # rmtree throws an error if data directory not extant
+    try:
+        shutil.rmtree('./RAW')
+    except FileNotFoundError:
+        print("Data directory not found.\nCreating new directory...")
+    mkdir('./RAW')
 
-fileNumbers = binNumber
-fs = 4000  # Sampling rate
-f0 = 60  # Frequency to be removed from signal (Hz)
-w0 = f0/(fs/2)
-b, a, d, c, f, e = prepareFilter(w0, fs)
+    fileNumbers = binNumber
+    fs = 4000  # Sampling rate
+    f0 = 60  # Frequency to be removed from signal (Hz)
+    w0 = f0/(fs/2)
+    b, a, d, c, f, e = prepareFilter(w0, fs)
 
-win_len = 4000
-max_freq = 500
-rawSize = 4000
-num_win = floor(rawSize / win_len)
-print('Number of wins: ', num_win)
-
-
-
-
-MEF = []
-MDF = []
-ARV = []
-RMS = []
-
-
-for i in range(fileNumbers):
-    binpath = []
-    binpath.append(binPath + str(i) + '.bin')
-    test_str = "".join(binpath)
-    raw = fromfile(test_str, dtype=float64)
-
-    sub_raw = raw[:fs * num_win]  # transforms raw data into 1 sec windows
-    sub = array_split(sub_raw, num_win)
-    for m in range(num_win):
-        inwin = sub[m]
-        dataAF = inwin
-        dataAF = addFilter(d, c, dataAF)
-        dataAF = addFilter(b, a, dataAF)
-        dataAF = addFilter(f, e, dataAF)
-        dataAF = addFilter(b, a, dataAF)
-
-        MEF.append(meanfreq(dataAF, win_len))
-        MDF.append(medfreq(dataAF, win_len))
-        ARV.append(arv(dataAF))
-        RMS.append(rms(dataAF))
+    win_len = 4000
+    max_freq = 500
+    rawSize = 4000
+    num_win = int(rawSize / win_len)
+    print('Number of wins: ', num_win)
 
 
-savetxt("ARV1.csv", array(ARV))
-savetxt("RMS1.csv", array(RMS))
-savetxt("MEF1.csv", array(MEF))
-savetxt("MDF1.csv", array(MDF))
+
+
+    MEF = []
+    MDF = []
+    ARV = []
+    RMS = []
+    RAW = []
+
+    for i in range(fileNumbers):
+        binpath = []
+        binpath.append(binPath + str(i) + '.bin')
+        test_str = "".join(binpath)
+        raw = fromfile(test_str, dtype=float64)
+
+        sub_raw = raw[:fs * num_win]  # transforms raw data into 1 sec windows
+        sub = array_split(sub_raw, num_win)
+        for m in range(num_win):
+            inwin = sub[m]
+            dataAF = inwin
+            dataAF = addFilter(d, c, dataAF)
+            dataAF = addFilter(b, a, dataAF)
+            dataAF = addFilter(f, e, dataAF)
+            dataAF = addFilter(b, a, dataAF)
+
+            savetxt("RAW/"+str(i)+'.csv', array(dataAF))
+            MEF.append(meanfreq(dataAF, win_len))
+            MDF.append(medfreq(dataAF, win_len))
+            ARV.append(arv(dataAF))
+            RMS.append(rms(dataAF))
+
+
+    savetxt("ARV1.csv", array(ARV))
+    savetxt("RMS1.csv", array(RMS))
+    savetxt("MEF1.csv", array(MEF))
+    savetxt("MDF1.csv", array(MDF))
+
