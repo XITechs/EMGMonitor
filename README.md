@@ -14,3 +14,10 @@ Note:
 1. This program will try to record every second's raw data to the ''rawdata'' folder as a .bin file.
 2. When the program starts, it will clear all the old .bin files in the ''rawdata'' folder.
 3. If you want to load the .bin data to python to do the offline process, you may need numpy.fromfile().
+
+
+## Offline data processing
+The 'readbin.py' in readdata folder can process the .bin datas in 'rawdata' folder and convert the results to .csv file.
+The processing part include 4 feature detection model: AVR, RMS, MEF, MDF.
+The FFT window length is 1s.
+
