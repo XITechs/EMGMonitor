@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [EMGV1.PrjPCB]
+   Generated File[EMGV1.TXT]
+   Generated File[EMGV1.LDP]
+   Generated File[EMGV1.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 18:41:48 On 2020/5/2

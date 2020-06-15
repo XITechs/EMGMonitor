@@ -1,0 +1,53 @@
+Net Status Report
+Filename     : D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc
+Date         : 2020/5/2
+Time         : 16:39:59
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    AIN2_A1, Signal Layers Only, 6.3276mm
+    AIN3_A0, Signal Layers Only, 9.1757mm
+    DEC1, Signal Layers Only, 2.1816mm
+    GND, Signal Layers Only, 37.9738mm
+    LED_G, Signal Layers Only, 0.3556mm
+    NetA1_1, Signal Layers Only, 1.35mm
+    NetC13_1, Signal Layers Only, 1.1919mm
+    NetC13_2, Signal Layers Only, 1.3041mm
+    NetC15_2, Signal Layers Only, 7.9542mm
+    NetC1_1, Signal Layers Only, 4.2658mm
+    NetC20_1, Signal Layers Only, 1.3801mm
+    NetC2_1, Signal Layers Only, 6.9367mm
+    NetC3_2, Signal Layers Only, 1.5211mm
+    NetC9_1, Signal Layers Only, 0.3556mm
+    NetCard1_1, Signal Layers Only, 3.8013mm
+    NetCard1_2, Signal Layers Only, 3.7323mm
+    NetChigh_1, Signal Layers Only, 5.8647mm
+    NetChigh_2, Signal Layers Only, 7.4746mm
+    NetD1_2, Signal Layers Only, 20.4031mm
+    NetD1_3, Signal Layers Only, 26.0703mm
+    NetFB2_1, Signal Layers Only, 5.7947mm
+    NetL2_1, Signal Layers Only, 1.752mm
+    NetL2_2, Signal Layers Only, 2.4891mm
+    NetL4_2, Signal Layers Only, 3.5594mm
+    NetLD1_2, Signal Layers Only, 5.7513mm
+    NetLD2_2, Signal Layers Only, 3.4914mm
+    NetR1_1, Signal Layers Only, 6.861mm
+    NetR1_2, Signal Layers Only, 3.4196mm
+    NetR2_1, Signal Layers Only, 3.0157mm
+    NetR2_2, Signal Layers Only, 3.4196mm
+    NetR4_2, Signal Layers Only, 3.6557mm
+    NetR7_1, Signal Layers Only, 11.6302mm
+    NetR8_1, Signal Layers Only, 12.5765mm
+    NetR8_2, Signal Layers Only, 2.8688mm
+    P0.00/XL1, Signal Layers Only, 4.8033mm
+    P0.01/XL2, Signal Layers Only, 4.2358mm
+    P1.12_D3~, Signal Layers Only, 9.6575mm
+    P1.13_D5~, Signal Layers Only, 6.5958mm
+    RESET, Signal Layers Only, 7.6935mm
+    SCK, Signal Layers Only, 0.3556mm
+    SWDCLK, Signal Layers Only, 0mm
+    VBUS, Signal Layers Only, 32.3311mm
+    VBUS_nRF, Signal Layers Only, 14.4807mm
+    VDD_nRF, Signal Layers Only, 30.14mm
+    VEE, Signal Layers Only, 16.1315mm
+count : 45

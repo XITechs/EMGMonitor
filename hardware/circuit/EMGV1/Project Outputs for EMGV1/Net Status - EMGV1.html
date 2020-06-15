@@ -1,0 +1,482 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 { 
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body { 
+			font-family : segoe ui;
+		}
+
+		td, th {  
+			padding: 0.5em;
+			text-align : left;
+		}
+		th { 
+			background-color : #EEEEEE;
+		
+		}
+		th.column1, td.column1 { 
+			width : 50%; 
+		}
+
+        th.column2, td.column2 {
+            width : 25%;
+        }
+
+		table { 
+			width : 100%; 
+            font-size: 0.9em;
+		}
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 5em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error { 
+			color : red;
+			font-weight : bold;
+		}	
+		tr.onmouseout_odd { 
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+			
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);		
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {	
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}	
+	</script><title>Net Status Report</title>
+</head>
+<body onload="document.getElementById('radio_mm').click()"><img ALT="Altium" src="
+			file://D:\appD\altium\AD19\Templates\AD_logo.png
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Net Status Report</h1>
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2020/5/2</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">16:39:59</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc" class="file"><acronym title="D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc">D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc</acronym></a></td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Units:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">
+<form><input type="radio" name="radio_units" id="radio_mm" onclick="changeUnits(this, 'mm')">mm<input type="radio" name="radio_units" id="radio_mil" onclick="changeUnits(this, 'mil')">mils</form>
+</td>
+</tr>
+</table><a name="IDS4QCXNIGVBGZMKWXBJ0PLANDVMXFNCRO1GTO3KJALTTAFZY4JKON"><table>
+<tr>
+<th class="column1">Nets</th>
+<th class="column2">Layer</th>
+<th class="column3">Length</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1806.473mil|Location2.X=2020.394mil|Location1.Y=2251.472mil|Location2.Y=2451.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1806.473mil|Location2.X=2020.394mil|Location1.Y=2251.472mil|Location2.Y=2451.732mil|Absolute=True">AIN2_A1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2491195">6.3276mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.473mil|Location2.X=2020.394mil|Location1.Y=2251.472mil|Location2.Y=2465.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.473mil|Location2.X=2020.394mil|Location1.Y=2251.472mil|Location2.Y=2465.512mil|Absolute=True">AIN3_A0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="3612472">9.1757mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1951.905mil|Location2.X=2020.394mil|Location1.Y=2345.095mil|Location2.Y=2424.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1951.905mil|Location2.X=2020.394mil|Location1.Y=2345.095mil|Location2.Y=2424.173mil|Absolute=True">DEC1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="858888">2.1816mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1110.094mil|Location2.X=2289.921mil|Location1.Y=2140.079mil|Location2.Y=2859.921mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1110.094mil|Location2.X=2289.921mil|Location1.Y=2140.079mil|Location2.Y=2859.921mil|Absolute=True">GND</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="14950320">37.9738mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2006.905mil|Location2.X=2025.535mil|Location1.Y=2477.653mil|Location2.Y=2497.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2006.905mil|Location2.X=2025.535mil|Location1.Y=2477.653mil|Location2.Y=2497.465mil|Absolute=True">LED_G</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="140000">0.3556mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2198.362mil|Location2.X=2279.196mil|Location1.Y=2620.846mil|Location2.Y=2717.819mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2198.362mil|Location2.X=2279.196mil|Location1.Y=2620.846mil|Location2.Y=2717.819mil|Absolute=True">NetA1_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="531511">1.35mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2228.247mil|Location2.X=2250mil|Location1.Y=2551.905mil|Location2.Y=2617.206mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2228.247mil|Location2.X=2250mil|Location1.Y=2551.905mil|Location2.Y=2617.206mil|Absolute=True">NetC13_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="469251">1.1919mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2208.976mil|Location2.X=2260.511mil|Location1.Y=2462.333mil|Location2.Y=2549.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2208.976mil|Location2.X=2260.511mil|Location1.Y=2462.333mil|Location2.Y=2549.016mil|Absolute=True">NetC13_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="513415">1.3041mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2036.929mil|Location2.X=2130.63mil|Location1.Y=2261.157mil|Location2.Y=2451.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2036.929mil|Location2.X=2130.63mil|Location1.Y=2261.157mil|Location2.Y=2451.732mil|Absolute=True">NetC15_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="3131582">7.9542mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.386mil|Location2.X=2225.653mil|Location1.Y=2299.976mil|Location2.Y=2424.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.386mil|Location2.X=2225.653mil|Location1.Y=2299.976mil|Location2.Y=2424.173mil|Absolute=True">NetC1_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1679432">4.2658mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2000.252mil|Location2.X=2039.748mil|Location1.Y=2537.165mil|Location2.Y=2607.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2000.252mil|Location2.X=2039.748mil|Location1.Y=2537.165mil|Location2.Y=2607.192mil|Absolute=True">NetC20_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="543358">1.3801mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2119.606mil|Location2.X=2269.709mil|Location1.Y=2214.228mil|Location2.Y=2424.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2119.606mil|Location2.X=2269.709mil|Location1.Y=2214.228mil|Location2.Y=2424.173mil|Absolute=True">NetC2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2730973">6.9367mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.386mil|Location2.X=2208.098mil|Location1.Y=2463.877mil|Location2.Y=2484.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.386mil|Location2.X=2208.098mil|Location1.Y=2463.877mil|Location2.Y=2484.315mil|Absolute=True">NetC3_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="598853">1.5211mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.213mil|Location2.X=2135.024mil|Location1.Y=2478.244mil|Location2.Y=2496.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.213mil|Location2.X=2135.024mil|Location1.Y=2478.244mil|Location2.Y=2496.874mil|Absolute=True">NetC9_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="140000">0.3556mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1265.606mil|Location2.X=1362.189mil|Location1.Y=2163.441mil|Location2.Y=2365.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1265.606mil|Location2.X=1362.189mil|Location1.Y=2163.441mil|Location2.Y=2365.339mil|Absolute=True">NetCard1_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1496561">3.8013mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1365.606mil|Location2.X=1433.055mil|Location1.Y=2163.441mil|Location2.Y=2365.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1365.606mil|Location2.X=1433.055mil|Location1.Y=2163.441mil|Location2.Y=2365.339mil|Absolute=True">NetCard1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1469419">3.7323mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1151.608mil|Location2.X=1368.843mil|Location1.Y=2456.737mil|Location2.Y=2565.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1151.608mil|Location2.X=1368.843mil|Location1.Y=2456.737mil|Location2.Y=2565.96mil|Absolute=True">NetChigh_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2308948">5.8647mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.859mil|Location2.X=1528.584mil|Location1.Y=2355.832mil|Location2.Y=2565.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.859mil|Location2.X=1528.584mil|Location1.Y=2355.832mil|Location2.Y=2565.96mil|Absolute=True">NetChigh_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2942764">7.4746mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1359.504mil|Location2.X=2047.953mil|Location1.Y=2523.386mil|Location2.Y=2705.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1359.504mil|Location2.X=2047.953mil|Location1.Y=2523.386mil|Location2.Y=2705.26mil|Absolute=True">NetD1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="8032717">20.4031mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1333.913mil|Location2.X=2047.953mil|Location1.Y=2517.539mil|Location2.Y=2705.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1333.913mil|Location2.X=2047.953mil|Location1.Y=2517.539mil|Location2.Y=2705.26mil|Absolute=True">NetD1_3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="10263878">26.0703mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1110mil|Location2.X=1306.48mil|Location1.Y=2615mil|Location2.Y=2705.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1110mil|Location2.X=1306.48mil|Location1.Y=2615mil|Location2.Y=2705.26mil|Absolute=True">NetFB2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2281373">5.7947mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1982.575mil|Location2.X=2088.095mil|Location1.Y=2259.661mil|Location2.Y=2297.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1982.575mil|Location2.X=2088.095mil|Location1.Y=2259.661mil|Location2.Y=2297.189mil|Absolute=True">NetL2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="689765">1.752mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1982.575mil|Location2.X=2034.173mil|Location1.Y=2312.811mil|Location2.Y=2424.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1982.575mil|Location2.X=2034.173mil|Location1.Y=2312.811mil|Location2.Y=2424.173mil|Absolute=True">NetL2_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="979964">2.4891mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1897.811mil|Location2.X=2034.173mil|Location1.Y=2495.252mil|Location2.Y=2534.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1897.811mil|Location2.X=2034.173mil|Location1.Y=2495.252mil|Location2.Y=2534.748mil|Absolute=True">NetL4_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1401355">3.5594mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1898.5mil|Location2.X=2090.535mil|Location1.Y=2505.095mil|Location2.Y=2625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1898.5mil|Location2.X=2090.535mil|Location1.Y=2505.095mil|Location2.Y=2625mil|Absolute=True">NetLD1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2264294">5.7513mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1898.5mil|Location2.X=2003.095mil|Location1.Y=2395mil|Location2.Y=2497.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1898.5mil|Location2.X=2003.095mil|Location1.Y=2395mil|Location2.Y=2497.465mil|Absolute=True">NetLD2_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1374576">3.4914mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.39mil|Location2.X=1189.45mil|Location1.Y=2153.115mil|Location2.Y=2426.548mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.39mil|Location2.X=1189.45mil|Location1.Y=2153.115mil|Location2.Y=2426.548mil|Absolute=True">NetR1_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2701200">6.861mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.048mil|Location2.X=1333.702mil|Location1.Y=2405.832mil|Location2.Y=2451.548mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.048mil|Location2.X=1333.702mil|Location1.Y=2405.832mil|Location2.Y=2451.548mil|Absolute=True">NetR1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1346305">3.4196mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.395mil|Location2.X=1189.45mil|Location1.Y=2253.115mil|Location2.Y=2401.548mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.395mil|Location2.X=1189.45mil|Location1.Y=2253.115mil|Location2.Y=2401.548mil|Absolute=True">NetR2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1187286">3.0157mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.048mil|Location2.X=1333.702mil|Location1.Y=2355.832mil|Location2.Y=2401.548mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.048mil|Location2.X=1333.702mil|Location1.Y=2355.832mil|Location2.Y=2401.548mil|Absolute=True">NetR2_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1346305">3.4196mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1151.608mil|Location2.X=1333.702mil|Location1.Y=2431.737mil|Location2.Y=2487.454mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1151.608mil|Location2.X=1333.702mil|Location1.Y=2431.737mil|Location2.Y=2487.454mil|Absolute=True">NetR4_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1439257">3.6557mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.428mil|Location2.X=1756.106mil|Location1.Y=2356.496mil|Location2.Y=2531.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.428mil|Location2.X=1756.106mil|Location1.Y=2356.496mil|Location2.Y=2531.334mil|Absolute=True">NetR7_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="4578808">11.6302mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.025mil|Location2.X=1773.527mil|Location1.Y=2151.472mil|Location2.Y=2487.454mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.025mil|Location2.X=1773.527mil|Location1.Y=2151.472mil|Location2.Y=2487.454mil|Absolute=True">NetR8_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="4951362">12.5765mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1541.775mil|Location2.X=1636.027mil|Location1.Y=2387.992mil|Location2.Y=2498.93mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1541.775mil|Location2.X=1636.027mil|Location1.Y=2387.992mil|Location2.Y=2498.93mil|Absolute=True">NetR8_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1129433">2.8688mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1853.441mil|Location2.X=2034.173mil|Location1.Y=2372.535mil|Location2.Y=2437.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1853.441mil|Location2.X=2034.173mil|Location1.Y=2372.535mil|Location2.Y=2437.953mil|Absolute=True">P0.00/XL1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1891060">4.8033mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1853.441mil|Location2.X=2020.394mil|Location1.Y=2426.929mil|Location2.Y=2467.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1853.441mil|Location2.X=2020.394mil|Location1.Y=2426.929mil|Location2.Y=2467.149mil|Absolute=True">P0.01/XL2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1667648">4.2358mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1996.473mil|Location2.X=2142.461mil|Location1.Y=2156.472mil|Location2.Y=2451.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1996.473mil|Location2.X=2142.461mil|Location1.Y=2156.472mil|Location2.Y=2451.732mil|Absolute=True">P1.12_D3~</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="3802158">9.6575mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2092.047mil|Location2.X=2163.528mil|Location1.Y=2156.472mil|Location2.Y=2424.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2092.047mil|Location2.X=2163.528mil|Location1.Y=2156.472mil|Location2.Y=2424.173mil|Absolute=True">P1.13_D5~</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2596785">6.5958mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1973.99mil|Location2.X=2079.905mil|Location1.Y=2537.165mil|Location2.Y=2801.56mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1973.99mil|Location2.X=2079.905mil|Location1.Y=2537.165mil|Location2.Y=2801.56mil|Absolute=True">RESET</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="3028924">7.6935mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2049.465mil|Location2.X=2068.095mil|Location1.Y=2505.095mil|Location2.Y=2524.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2049.465mil|Location2.X=2068.095mil|Location1.Y=2505.095mil|Location2.Y=2524.905mil|Absolute=True">SCK</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="140000">0.3556mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2119.606mil|Location2.X=2130.63mil|Location1.Y=2509.606mil|Location2.Y=2520.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2119.606mil|Location2.X=2130.63mil|Location1.Y=2509.606mil|Location2.Y=2520.63mil|Absolute=True">SWDCLK</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="0">0mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1248.143mil|Location2.X=1703.409mil|Location1.Y=2305.832mil|Location2.Y=2843.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1248.143mil|Location2.X=1703.409mil|Location1.Y=2305.832mil|Location2.Y=2843.528mil|Absolute=True">VBUS</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="12728795">32.3311mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.909mil|Location2.X=2034.173mil|Location1.Y=2523.386mil|Location2.Y=2704.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.909mil|Location2.X=2034.173mil|Location1.Y=2523.386mil|Location2.Y=2704.96mil|Absolute=True">VBUS_nRF</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="5701046">14.4807mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.094mil|Location2.X=2235.653mil|Location1.Y=2296.59mil|Location2.Y=2588.095mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.094mil|Location2.X=2235.653mil|Location1.Y=2296.59mil|Location2.Y=2588.095mil|Absolute=True">VDD_nRF</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="11866144">30.14mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1148.441mil|Location2.X=1672.359mil|Location1.Y=2251.204mil|Location2.Y=2560.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\projs\UCSD\UCSD2020\200428_YangzhiPCB\EMGV1\EMGV1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1148.441mil|Location2.X=1672.359mil|Location1.Y=2251.204mil|Location2.Y=2560.22mil|Absolute=True">VEE</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="6350983">16.1315mm
+			</a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
