@@ -2,11 +2,11 @@
 
 # -*- coding: utf-8 -*-
 
-from time import time
 import serial
 import shutil
 import os
 import sys
+import time
 from numpy import array, sqrt, mean, abs, zeros, dot, cumsum, where
 from numpy.fft import fft
 
@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
     while True:
         rawDataCount = 0
-        time1 = time()
+        time1 = time.time()
         while rawDataCount < displayDataNumber:
             volData = float(rawData) * voltagePerUnit
             rawDataArray[rawDataCount] = volData
@@ -226,11 +226,11 @@ if __name__ == '__main__':
 
 
         displayData = rawDataArray
-        time2 = time()
+        time2 = time.time()
 
         waveformCurve.setData(displayData)
         app.processEvents()
-        time3 = time()
+        time3 = time.time()
         print('Datablock: ', datablockN)
         print('time cost for display:', time3 - time2)
         print('time cost for acquisition:', time2 - time1)
