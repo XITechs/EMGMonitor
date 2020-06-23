@@ -7,7 +7,6 @@ import serial
 import shutil
 import os
 import sys
-import time
 from numpy import array, sqrt, mean, abs, zeros, dot, cumsum, where
 from numpy.fft import fft
 
