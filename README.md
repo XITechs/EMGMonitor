@@ -1,6 +1,7 @@
 # EMG Monitor
 A wearable EMG monitoring sensor project.
-
+EMGv1 will come soon:
+![EMGv1](https://github.com/xit057/EMGMonitor/blob/master/hardware/circuit/img/EMGv1.png?raw=true)
 ## EMG measurement
 Here are the Arduino code and GUI code for the real-time EMG measurement.
 To run the codes:
