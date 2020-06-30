@@ -4,7 +4,7 @@
 
 import os
 
-from numpy import dot, cumsum, where, array_split, savetxt, fromfile, float64, mean, array, sqrt, abs, sum
+from numpy import dot, cumsum, where, array_split, savetxt, fromfile, float64, mean, array, sqrt, abs, sum, transpose, reshape, zeros, append
 from numpy.fft import fft
 from os import listdir, mkdir
 from os.path import isfile, join
@@ -119,6 +119,7 @@ if __name__ == '__main__':
                 ARV = []
                 RMS = []
                 RAW = []
+                raw_out = array([])
 
                 for i in range(fileNumbers):
                     binpath = []
@@ -128,6 +129,7 @@ if __name__ == '__main__':
 
                     sub_raw = raw[:fs * num_win]  # transforms raw data into 1 sec windows
                     sub = array_split(sub_raw, num_win)
+                    
                     for m in range(num_win):
                         inwin = sub[m]
                         dataAF = inwin
@@ -141,12 +143,23 @@ if __name__ == '__main__':
                         MDF.append(medfreq(dataAF, win_len))
                         ARV.append(arv(dataAF))
                         RMS.append(rms(dataAF))
+                        # print(reshape(dataAF, (1, rawSize)).shape)
+                        # RAW.append(transpose(dataAF))
+                        # RAW.append(reshape(dataAF, (1, rawSize)))
+                        # RAW.append(dataAF)
+                        # RAW = RAW.rstrip()
+                        raw_out = append(raw_out, dataAF)
+                        # print(raw_out.shape)
 
 
-                        savetxt("ARV1.csv", array(ARV))
-                        savetxt("RMS1.csv", array(RMS))
-                        savetxt("MEF1.csv", array(MEF))
-                        savetxt("MDF1.csv", array(MDF))
+
+                savetxt("ARV1.csv", array(ARV))
+                savetxt("RMS1.csv", array(RMS))
+                savetxt("MEF1.csv", array(MEF))
+                savetxt("MDF1.csv", array(MDF))
+                # savetxt("RAW_full.csv", RAW)
+                savetxt("RAW.csv", array(raw_out))
+
 
                 print("Complete, saved CSV files for ", dirpath)
 
